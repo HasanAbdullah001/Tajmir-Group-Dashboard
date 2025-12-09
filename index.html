@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tajmir Group - Dashboard</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a73e8',
+                        secondary: '#5f6368',
+                        danger: '#d93025',
+                        dark: {
+                            bg: '#0f111a',
+                            card: '#1e212b',
+                            text: '#e2e8f0',
+                            border: '#2d3748'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Hind Siliguri', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/"
+  }
+}
+</script>
+<style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+        background: #374151;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+    
+    body {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Input Autofill Fix for Dark Mode */
+    .dark input:-webkit-autofill,
+    .dark input:-webkit-autofill:hover, 
+    .dark input:-webkit-autofill:focus, 
+    .dark textarea:-webkit-autofill,
+    .dark textarea:-webkit-autofill:hover,
+    .dark textarea:-webkit-autofill:focus {
+        -webkit-text-fill-color: #e2e8f0;
+        -webkit-box-shadow: 0 0 0px 1000px #1e212b inset;
+        transition: background-color 5000s ease-in-out 0s;
+        caret-color: #fff;
+    }
+
+    /* Blue Line Animation */
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+    .animate-shimmer {
+        animation: shimmer 2s infinite linear;
+    }
+</style>
+</head>
+<body class="bg-slate-50 text-gray-700 dark:bg-dark-bg dark:text-dark-text transition-colors duration-300 selection:bg-primary/20 selection:text-primary">
+    <div id="root"></div>
+</body>
+</html>
