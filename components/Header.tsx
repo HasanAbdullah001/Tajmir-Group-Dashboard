@@ -105,7 +105,10 @@ const Header: React.FC<HeaderProps> = ({
                             className="h-full w-full object-contain"
                             onError={(e) => {
                                 e.currentTarget.style.display = 'none';
-                                e.currentTarget.parentElement!.innerHTML = '<div class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-600 dark:text-gray-300"><i class="fa-solid fa-grid"></i></div>';
+                                const parent = e.currentTarget.parentElement;
+                                if (parent) {
+                                    parent.innerHTML = '<div class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-600 dark:text-gray-300"><i class="fa-solid fa-grid"></i></div>';
+                                }
                             }}
                         />
                     </button>
