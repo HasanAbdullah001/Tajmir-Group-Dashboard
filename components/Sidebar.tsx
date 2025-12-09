@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SidebarItem, QuickAction, EditIndices, EditType } from '../types';
 
 interface SidebarProps {
@@ -22,6 +22,8 @@ const Sidebar: React.FC<SidebarProps> = ({
     onLogout,
     onOpenLogin
 }) => {
+    const [isFoldersOpen, setIsFoldersOpen] = useState(true);
+
     return (
         <>
             {/* Mobile Overlay */}
@@ -74,43 +76,51 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* Navigation List */}
                 <nav className="flex-1 overflow-y-auto px-2 py-2 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-700">
-                    <ul className="space-y-0.5">
-                        <li className="pt-2 pb-1 px-3">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">Folder</span>
-                        </li>
-                        {items.map((item, idx) => (
-                            <li key={idx}>
-                                <a 
-                                    href={item.url} 
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    onClick={(e) => {
-                                        if (isEditMode) {
-                                            e.preventDefault();
-                                            onOpenEditModal('sidebar-edit', { index: idx });
-                                        }
-                                    }}
-                                    className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-card transition-all group font-medium"
-                                >
-                                    <i className={`${item.icon} w-5 text-center text-gray-400 group-hover:text-primary transition-colors text-lg`}></i>
-                                    <span className="flex-1 text-sm sm:text-base truncate">{item.title}</span>
-                                    {isEditMode && <i className="fa-solid fa-pencil text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>}
-                                </a>
-                            </li>
-                        ))}
-                        
-                        {/* Add Link Button (Only in Edit Mode) */}
-                        {isEditMode && (
-                            <li className="pt-4 px-2">
-                                <button 
-                                    onClick={() => onOpenEditModal('sidebar-add')}
-                                    className="w-full flex items-center justify-center gap-2 py-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-card hover:text-primary hover:border-primary transition-all text-sm font-medium shadow-sm"
-                                >
-                                    <i className="fa-solid fa-plus-circle"></i> Add Link
-                                </button>
-                            </li>
-                        )}
-                    </ul>
+                    {/* Collapsible Folder Header */}
+                    <div 
+                        onClick={() => setIsFoldersOpen(!isFoldersOpen)}
+                        className="flex items-center justify-between px-3 pt-2 pb-2 cursor-pointer group select-none"
+                    >
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 group-hover:text-primary transition-colors">Folder</span>
+                        <i className={`fa-solid fa-chevron-down text-[10px] text-gray-400 transition-transform duration-300 ${isFoldersOpen ? 'rotate-0' : '-rotate-90'}`}></i>
+                    </div>
+
+                    <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isFoldersOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <ul className="space-y-0.5 pb-2">
+                            {items.map((item, idx) => (
+                                <li key={idx}>
+                                    <a 
+                                        href={item.url} 
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        onClick={(e) => {
+                                            if (isEditMode) {
+                                                e.preventDefault();
+                                                onOpenEditModal('sidebar-edit', { index: idx });
+                                            }
+                                        }}
+                                        className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-card transition-all group font-medium"
+                                    >
+                                        <i className={`${item.icon} w-5 text-center text-gray-400 group-hover:text-primary transition-colors text-lg`}></i>
+                                        <span className="flex-1 text-sm sm:text-base truncate">{item.title}</span>
+                                        {isEditMode && <i className="fa-solid fa-pencil text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>}
+                                    </a>
+                                </li>
+                            ))}
+                            
+                            {/* Add Link Button (Only in Edit Mode) */}
+                            {isEditMode && (
+                                <li className="pt-2 px-1">
+                                    <button 
+                                        onClick={() => onOpenEditModal('sidebar-add')}
+                                        className="w-full flex items-center justify-center gap-2 py-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-card hover:text-primary hover:border-primary transition-all text-sm font-medium shadow-sm"
+                                    >
+                                        <i className="fa-solid fa-plus-circle"></i> Add Link
+                                    </button>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
                 </nav>
             </aside>
         </>

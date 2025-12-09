@@ -68,7 +68,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
             ? 'cursor-move border-2 border-dashed border-gray-200 dark:border-gray-700 hover:border-primary/50' 
             : 'cursor-pointer hover:-translate-y-1 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] dark:shadow-none dark:hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.4)] hover:shadow-primary/5 dark:hover:shadow-primary/10'
         }
-        bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border h-full
+        bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border h-full
         hover:border-primary/20 dark:hover:border-primary/20
     `;
 
