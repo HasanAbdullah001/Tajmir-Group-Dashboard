@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Left: Logo & Toggle */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 pl-2 sm:pl-4">
                 <button 
                     onClick={toggleSidebar}
                     className="md:hidden text-gray-500 dark:text-gray-400 hover:text-primary transition-colors text-xl p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-card"
@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({
                     <img 
                         src="https://2ef74abf.tunnel-tunnel.pages.dev/Tajmir%20logo.png" 
                         alt="Logo" 
-                        className="h-8 sm:h-10 w-auto object-contain hover:opacity-90 transition-opacity"
+                        className="h-10 sm:h-10 w-auto object-contain hover:opacity-90 transition-opacity"
                         onError={(e) => (e.currentTarget.style.display = 'none')} 
                     />
                 </div>
@@ -79,16 +79,16 @@ const Header: React.FC<HeaderProps> = ({
 
                 <button 
                     onClick={() => setIsSearchActive(!isSearchActive)}
-                    className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all"
+                    className="lg:hidden flex items-center justify-center w-9 h-9 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all"
                 >
                     <i className="fa-solid fa-search"></i>
                 </button>
 
                 <button 
                     onClick={toggleTheme} 
-                    className="relative w-12 h-7 rounded-full bg-gray-200 dark:bg-dark-card border border-gray-300 dark:border-dark-border transition-colors duration-300 focus:outline-none overflow-hidden"
+                    className="relative w-11 h-6 sm:w-12 sm:h-7 rounded-full bg-gray-200 dark:bg-dark-card border border-gray-300 dark:border-dark-border transition-colors duration-300 focus:outline-none overflow-hidden shrink-0"
                 >
-                    <div className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white dark:bg-primary shadow-sm transform transition-transform duration-300 flex items-center justify-center ${isDarkMode ? 'translate-x-5' : 'translate-x-0'}`}>
+                    <div className={`absolute top-0.5 left-0.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white dark:bg-primary shadow-sm transform transition-transform duration-300 flex items-center justify-center ${isDarkMode ? 'translate-x-5' : 'translate-x-0'}`}>
                         {isDarkMode ? <i className="fa-solid fa-moon text-[10px] text-white"></i> : <i className="fa-solid fa-sun text-[10px] text-yellow-500"></i>}
                     </div>
                 </button>
@@ -97,7 +97,7 @@ const Header: React.FC<HeaderProps> = ({
                     <button 
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                        className="flex items-center justify-center h-10 w-auto aspect-[469/179] rounded-lg overflow-hidden hover:opacity-80 transition-opacity"
+                        className="flex items-center justify-center h-8 sm:h-10 w-auto aspect-[469/179] rounded-lg overflow-hidden hover:opacity-80 transition-opacity"
                     >
                         <img 
                             src="https://2ef74abf.tunnel-tunnel.pages.dev/Tajmir%20land%20Button.png" 
@@ -127,9 +127,7 @@ const Header: React.FC<HeaderProps> = ({
                                         }}
                                         className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg transition-colors group"
                                     >
-                                        <div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                                            <i className="fa-solid fa-link text-xs"></i>
-                                        </div>
+                                        <div className="w-2 h-2 rounded-full bg-primary/80 shrink-0"></div>
                                         <span>{item.title}</span>
                                         {isEditMode && <i className="fa-solid fa-pencil ml-auto text-xs text-blue-400"></i>}
                                     </a>
