@@ -37,10 +37,10 @@ const ToolCard: React.FC<ToolCardProps> = ({
             </div>
             
             <div className="flex flex-col overflow-hidden w-full">
-                <span className="font-semibold text-gray-800 dark:text-gray-100 text-[10px] sm:text-sm leading-tight mb-1 w-full group-hover:text-primary transition-colors line-clamp-2">
+                <span className="font-semibold text-gray-800 dark:text-gray-100 text-xs sm:text-sm leading-tight mb-0.5 w-full group-hover:text-primary transition-colors line-clamp-2">
                     {tool.title}
                 </span>
-                <span className="text-[9px] sm:text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                <span className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 leading-tight line-clamp-2 opacity-80 group-hover:opacity-100 transition-opacity">
                     {tool.desc}
                 </span>
             </div>

@@ -177,7 +177,6 @@ const App: React.FC = () => {
                 dropdownData={data.dropdown}
                 isEditMode={isEditMode}
                 onOpenEditModal={openEditModal}
-                onOpenLogin={() => setIsLoginModalOpen(true)}
                 onRefresh={() => window.location.reload()}
             />
 
@@ -190,6 +189,7 @@ const App: React.FC = () => {
                     isEditMode={isEditMode}
                     onOpenEditModal={openEditModal}
                     onLogout={handleLogout}
+                    onOpenLogin={() => setIsLoginModalOpen(true)}
                 />
 
                 <main className="flex-1 w-full md:w-[calc(100%-260px)] md:ml-[260px] p-4 sm:p-6 lg:p-8 transition-all duration-300">

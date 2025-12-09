@@ -9,7 +9,6 @@ interface HeaderProps {
     dropdownData: DropdownItem[];
     isEditMode: boolean;
     onOpenEditModal: (type: EditType, indices?: EditIndices) => void;
-    onOpenLogin: () => void;
     onRefresh: () => void;
 }
 
@@ -20,7 +19,6 @@ const Header: React.FC<HeaderProps> = ({
     dropdownData,
     isEditMode,
     onOpenEditModal,
-    onOpenLogin,
     onRefresh
 }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -34,24 +32,24 @@ const Header: React.FC<HeaderProps> = ({
     };
 
     return (
-        <header className="fixed top-0 left-0 w-full h-[70px] bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-dark-border/50 z-50 flex items-center justify-between px-2 sm:px-8 shadow-sm transition-all duration-300">
+        <header className="fixed top-0 left-0 w-full h-[70px] bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-dark-border/50 z-50 flex items-center justify-between px-3 sm:px-8 shadow-sm transition-all duration-300">
             {/* Animated Blue Line */}
             <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-transparent overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-r from-transparent via-primary to-transparent animate-shimmer opacity-80"></div>
             </div>
 
             {/* Left: Logo & Toggle */}
-            <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                 <button 
                     onClick={toggleSidebar}
-                    className="md:hidden text-gray-500 dark:text-gray-300 hover:text-primary transition-colors text-lg p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card"
+                    className="md:hidden text-gray-500 dark:text-gray-300 hover:text-primary transition-colors text-xl p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card"
                 >
                     <i className="fa-solid fa-bars-staggered"></i>
                 </button>
                 <img 
                     src="https://2ef74abf.tunnel-tunnel.pages.dev/Tajmir%20logo.png" 
                     alt="Logo" 
-                    className="h-7 sm:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
+                    className="h-9 sm:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
                     onError={(e) => (e.currentTarget.style.display = 'none')} 
                 />
             </div>
@@ -59,59 +57,47 @@ const Header: React.FC<HeaderProps> = ({
             {/* Center: Search */}
             <div className={`absolute top-full left-0 w-full bg-white/95 dark:bg-dark-card/95 backdrop-blur-lg p-4 shadow-lg lg:shadow-none lg:static lg:bg-transparent lg:p-0 lg:flex lg:justify-center transition-all duration-300 ${isSearchActive ? 'block border-b border-gray-100 dark:border-dark-border' : 'hidden lg:block'}`}>
                 <div className="relative w-full max-w-xl group">
-                    <i className="fa-solid fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400 group-focus-within:text-primary transition-colors duration-300"></i>
+                    <i className="fa-solid fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-400 group-focus-within:text-primary transition-colors duration-300 text-lg"></i>
                     <input 
                         type="text" 
                         placeholder="Search Google..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={handleSearch}
-                        className="w-full bg-gray-100 dark:bg-[#1a1d29] border border-transparent dark:border-gray-700/50 focus:border-primary/20 hover:bg-gray-100 dark:hover:bg-[#1f2231] rounded-2xl py-2.5 pl-12 pr-4 text-sm focus:ring-4 focus:ring-primary/10 outline-none transition-all duration-300 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 shadow-inner"
+                        className="w-full bg-gray-100 dark:bg-[#1a1d29] border border-transparent dark:border-gray-700/50 focus:border-primary/20 hover:bg-gray-100 dark:hover:bg-[#1f2231] rounded-2xl py-3 pl-12 pr-4 text-base focus:ring-4 focus:ring-primary/10 outline-none transition-all duration-300 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 shadow-inner"
                     />
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none opacity-50">
-                        <span className="text-xs bg-white dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded px-1.5 py-0.5 text-gray-400 font-mono">/</span>
-                    </div>
                 </div>
             </div>
 
             {/* Right: Actions */}
-            <div className="flex items-center gap-1 sm:gap-3 ml-auto md:ml-0 flex-shrink flex-nowrap">
-                <button onClick={onRefresh} className="hidden sm:flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all hover:text-primary">
-                    <i className="fa-solid fa-arrow-rotate-right text-xs sm:text-sm"></i>
+            <div className="flex items-center gap-2 sm:gap-3 ml-auto md:ml-0 flex-shrink flex-nowrap">
+                <button onClick={onRefresh} className="hidden sm:flex items-center justify-center w-10 h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all hover:text-primary">
+                    <i className="fa-solid fa-arrow-rotate-right text-base sm:text-lg"></i>
                 </button>
 
                 <button 
                     onClick={() => setIsSearchActive(!isSearchActive)}
-                    className="lg:hidden flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all"
+                    className="lg:hidden flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all"
                 >
-                    <i className="fa-solid fa-search text-xs sm:text-sm"></i>
+                    <i className="fa-solid fa-search text-base sm:text-lg"></i>
                 </button>
 
                 {/* Theme Toggle */}
                 <button 
                     onClick={toggleTheme} 
-                    className="relative w-9 h-5 sm:w-12 sm:h-7 rounded-full bg-gray-200 dark:bg-dark-card border border-gray-300 dark:border-dark-border transition-colors duration-300 focus:outline-none overflow-hidden shrink-0"
+                    className="relative w-11 h-6 sm:w-14 sm:h-7 rounded-full bg-gray-200 dark:bg-dark-card border border-gray-300 dark:border-dark-border transition-colors duration-300 focus:outline-none overflow-hidden shrink-0"
                 >
-                    <div className={`absolute top-0.5 left-0.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white dark:bg-primary shadow-md transform transition-transform duration-300 flex items-center justify-center z-10 ${isDarkMode ? 'translate-x-4 sm:translate-x-5' : 'translate-x-0'}`}>
-                        {isDarkMode ? <i className="fa-solid fa-moon text-[8px] sm:text-[10px] text-white"></i> : <i className="fa-solid fa-sun text-[8px] sm:text-[10px] text-yellow-500"></i>}
+                    <div className={`absolute top-0.5 left-0.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white dark:bg-primary shadow-md transform transition-transform duration-300 flex items-center justify-center z-10 ${isDarkMode ? 'translate-x-5 sm:translate-x-7' : 'translate-x-0'}`}>
+                        {isDarkMode ? <i className="fa-solid fa-moon text-[10px] sm:text-xs text-white"></i> : <i className="fa-solid fa-sun text-[10px] sm:text-xs text-yellow-500"></i>}
                     </div>
                 </button>
                 
-                {/* Admin/Settings */}
-                <button 
-                    onClick={onOpenLogin}
-                    className={`w-7 h-7 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${isEditMode ? 'bg-red-50 text-red-500 border border-red-200' : 'hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 hover:text-primary'}`}
-                    title="Admin Settings"
-                >
-                    <i className={`fa-solid ${isEditMode ? 'fa-lock-open' : 'fa-gear'} text-xs sm:text-sm`}></i>
-                </button>
-
                 {/* Dropdown / Menu Button */}
-                <div className="relative ml-0.5 sm:ml-1">
+                <div className="relative ml-1 sm:ml-2">
                     <button 
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                        className="flex items-center justify-center h-7 sm:h-11 w-auto aspect-[469/179] rounded-md overflow-hidden hover:ring-2 sm:hover:ring-4 hover:ring-gray-100 dark:hover:ring-dark-card transition-all"
+                        className="flex items-center justify-center h-9 sm:h-11 w-auto aspect-[469/179] rounded-md overflow-hidden hover:ring-2 sm:hover:ring-4 hover:ring-gray-100 dark:hover:ring-dark-card transition-all"
                     >
                         <img 
                             src="https://2ef74abf.tunnel-tunnel.pages.dev/Tajmir%20land%20Button.png" 
@@ -139,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({
                                                 onOpenEditModal('dropdown-edit', { index: idx });
                                             }
                                         }}
-                                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors"
+                                        className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors"
                                     >
                                         <div className="w-2 h-2 rounded-full bg-primary/50"></div>
                                         {item.title}
