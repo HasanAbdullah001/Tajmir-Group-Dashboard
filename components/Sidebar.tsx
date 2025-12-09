@@ -42,24 +42,34 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* Quick Actions (Editable) */}
                 <div className="grid grid-cols-4 gap-1 p-2 border-b border-gray-100 dark:border-dark-border">
-                    {quickActions && quickActions.map((action, idx) => (
-                        <a 
-                            key={idx}
-                            href={!isEditMode ? action.url : '#'} 
-                            target={!isEditMode ? "_blank" : undefined}
-                            rel="noreferrer"
-                            onClick={(e) => {
-                                if (isEditMode) {
-                                    e.preventDefault();
-                                    onOpenEditModal('quick-action-edit', { index: idx });
-                                }
-                            }}
-                            className={`relative flex items-center justify-center h-10 rounded-lg transition-all ${isEditMode ? 'text-primary bg-blue-50 hover:bg-blue-100 border border-blue-200 cursor-pointer' : 'text-gray-500 dark:text-gray-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-dark-card'}`}
-                        >
-                            <i className={`${action.icon} text-lg`}></i>
-                            {isEditMode && <i className="fa-solid fa-pencil absolute -top-1 -right-1 text-[8px] bg-white rounded-full p-0.5 shadow-sm text-primary"></i>}
-                        </a>
-                    ))}
+                    {quickActions && quickActions.map((action, idx) => {
+                        const isGear = action.icon.includes('fa-gear') || action.icon.includes('fa-cog');
+                        return (
+                            <a 
+                                key={idx}
+                                href={!isEditMode && !isGear ? action.url : '#'} 
+                                target={!isEditMode && !isGear ? "_blank" : undefined}
+                                rel="noreferrer"
+                                onClick={(e) => {
+                                    if (isGear) {
+                                        e.preventDefault();
+                                        if (isEditMode) onLogout();
+                                        else onOpenLogin();
+                                        return;
+                                    }
+                                    if (isEditMode) {
+                                        e.preventDefault();
+                                        onOpenEditModal('quick-action-edit', { index: idx });
+                                    }
+                                }}
+                                className={`relative flex items-center justify-center h-10 rounded-lg transition-all ${isEditMode ? 'text-primary bg-blue-50 hover:bg-blue-100 border border-blue-200 cursor-pointer' : 'text-gray-500 dark:text-gray-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-dark-card'}`}
+                                title={isGear ? (isEditMode ? "Exit Admin" : "Settings") : undefined}
+                            >
+                                <i className={`${action.icon} text-lg ${isGear && isEditMode ? 'text-danger' : ''}`}></i>
+                                {isEditMode && !isGear && <i className="fa-solid fa-pencil absolute -top-1 -right-1 text-[8px] bg-white rounded-full p-0.5 shadow-sm text-primary"></i>}
+                            </a>
+                        );
+                    })}
                 </div>
 
                 {/* Navigation List */}
@@ -88,28 +98,20 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 </a>
                             </li>
                         ))}
+                        
+                        {/* Add Link Button (Only in Edit Mode) */}
+                        {isEditMode && (
+                            <li className="pt-4 px-2">
+                                <button 
+                                    onClick={() => onOpenEditModal('sidebar-add')}
+                                    className="w-full flex items-center justify-center gap-2 py-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-card hover:text-primary hover:border-primary transition-all text-sm font-medium shadow-sm"
+                                >
+                                    <i className="fa-solid fa-plus-circle"></i> Add Link
+                                </button>
+                            </li>
+                        )}
                     </ul>
                 </nav>
-
-                {/* Footer Actions (Add Button / Settings) */}
-                <div className="p-3 border-t border-gray-100 dark:border-dark-border bg-gray-50/50 dark:bg-dark-card/30 space-y-2">
-                    {isEditMode && (
-                        <button 
-                            onClick={() => onOpenEditModal('sidebar-add')}
-                            className="w-full flex items-center justify-center gap-2 py-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-card hover:text-primary hover:border-primary transition-all text-sm font-medium shadow-sm"
-                        >
-                            <i className="fa-solid fa-plus-circle"></i> Add Link
-                        </button>
-                    )}
-                    
-                    <button 
-                        onClick={isEditMode ? onLogout : onOpenLogin}
-                        className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-lg transition-all text-sm sm:text-base font-medium shadow-sm ${isEditMode ? 'bg-red-50 text-danger hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40' : 'bg-white dark:bg-dark-card text-gray-600 dark:text-gray-300 hover:text-primary hover:shadow-md border border-gray-200 dark:border-gray-700'}`}
-                    >
-                        <i className={`fa-solid ${isEditMode ? 'fa-right-from-bracket' : 'fa-gear'}`}></i>
-                        {isEditMode ? 'Exit Admin' : 'Settings'}
-                    </button>
-                </div>
             </aside>
         </>
     );
