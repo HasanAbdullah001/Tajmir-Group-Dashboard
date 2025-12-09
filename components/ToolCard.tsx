@@ -37,10 +37,10 @@ const ToolCard: React.FC<ToolCardProps> = ({
             </div>
             
             <div className="flex flex-col overflow-hidden w-full">
-                <span className="font-semibold text-gray-800 dark:text-gray-100 text-sm leading-tight mb-1 truncate w-full group-hover:text-primary transition-colors">
+                <span className="font-semibold text-gray-800 dark:text-gray-100 text-[10px] sm:text-sm leading-tight mb-1 w-full group-hover:text-primary transition-colors line-clamp-2">
                     {tool.title}
                 </span>
-                <span className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                <span className="text-[9px] sm:text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2 opacity-80 group-hover:opacity-100 transition-opacity">
                     {tool.desc}
                 </span>
             </div>
@@ -61,8 +61,8 @@ const ToolCard: React.FC<ToolCardProps> = ({
         flex flex-col sm:flex-row 
         items-center sm:items-start 
         text-center sm:text-left 
-        gap-3 sm:gap-4 
-        p-4 sm:p-5 
+        gap-2 sm:gap-4 
+        p-3 sm:p-5 
         rounded-lg transition-all duration-300 ease-out
         ${isEditMode 
             ? 'cursor-move border-2 border-dashed border-gray-200 dark:border-gray-700 hover:border-primary/50' 

@@ -34,24 +34,24 @@ const Header: React.FC<HeaderProps> = ({
     };
 
     return (
-        <header className="fixed top-0 left-0 w-full h-[70px] bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-dark-border/50 z-50 flex items-center justify-between px-3 sm:px-8 shadow-sm transition-all duration-300">
+        <header className="fixed top-0 left-0 w-full h-[70px] bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-dark-border/50 z-50 flex items-center justify-between px-2 sm:px-8 shadow-sm transition-all duration-300">
             {/* Animated Blue Line */}
             <div className="absolute bottom-0 left-0 w-full h-[1.5px] bg-transparent overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-r from-transparent via-primary to-transparent animate-shimmer opacity-80"></div>
             </div>
 
             {/* Left: Logo & Toggle */}
-            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
                 <button 
                     onClick={toggleSidebar}
-                    className="md:hidden text-gray-500 dark:text-gray-300 hover:text-primary transition-colors text-xl p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card"
+                    className="md:hidden text-gray-500 dark:text-gray-300 hover:text-primary transition-colors text-lg p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card"
                 >
                     <i className="fa-solid fa-bars-staggered"></i>
                 </button>
                 <img 
                     src="https://2ef74abf.tunnel-tunnel.pages.dev/Tajmir%20logo.png" 
                     alt="Logo" 
-                    className="h-10 sm:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
+                    className="h-7 sm:h-12 w-auto object-contain hover:opacity-90 transition-opacity"
                     onError={(e) => (e.currentTarget.style.display = 'none')} 
                 />
             </div>
@@ -82,17 +82,17 @@ const Header: React.FC<HeaderProps> = ({
 
                 <button 
                     onClick={() => setIsSearchActive(!isSearchActive)}
-                    className="lg:hidden flex items-center justify-center w-8 h-8 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all"
+                    className="lg:hidden flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 transition-all"
                 >
-                    <i className="fa-solid fa-search text-sm"></i>
+                    <i className="fa-solid fa-search text-xs sm:text-sm"></i>
                 </button>
 
                 {/* Theme Toggle */}
                 <button 
                     onClick={toggleTheme} 
-                    className="relative w-10 h-6 sm:w-12 sm:h-7 rounded-full bg-gray-200 dark:bg-dark-card border border-gray-300 dark:border-dark-border transition-colors duration-300 focus:outline-none overflow-hidden shrink-0"
+                    className="relative w-9 h-5 sm:w-12 sm:h-7 rounded-full bg-gray-200 dark:bg-dark-card border border-gray-300 dark:border-dark-border transition-colors duration-300 focus:outline-none overflow-hidden shrink-0"
                 >
-                    <div className={`absolute top-0.5 left-0.5 w-4 h-5 sm:w-5 sm:h-5 rounded-full bg-white dark:bg-primary shadow-md transform transition-transform duration-300 flex items-center justify-center z-10 ${isDarkMode ? 'translate-x-4 sm:translate-x-5' : 'translate-x-0'}`}>
+                    <div className={`absolute top-0.5 left-0.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white dark:bg-primary shadow-md transform transition-transform duration-300 flex items-center justify-center z-10 ${isDarkMode ? 'translate-x-4 sm:translate-x-5' : 'translate-x-0'}`}>
                         {isDarkMode ? <i className="fa-solid fa-moon text-[8px] sm:text-[10px] text-white"></i> : <i className="fa-solid fa-sun text-[8px] sm:text-[10px] text-yellow-500"></i>}
                     </div>
                 </button>
@@ -100,10 +100,10 @@ const Header: React.FC<HeaderProps> = ({
                 {/* Admin/Settings */}
                 <button 
                     onClick={onOpenLogin}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${isEditMode ? 'bg-red-50 text-red-500 border border-red-200' : 'hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 hover:text-primary'}`}
+                    className={`w-7 h-7 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${isEditMode ? 'bg-red-50 text-red-500 border border-red-200' : 'hover:bg-gray-100 dark:hover:bg-dark-card text-gray-500 dark:text-gray-400 hover:text-primary'}`}
                     title="Admin Settings"
                 >
-                    <i className={`fa-solid ${isEditMode ? 'fa-lock-open' : 'fa-gear'} text-sm`}></i>
+                    <i className={`fa-solid ${isEditMode ? 'fa-lock-open' : 'fa-gear'} text-xs sm:text-sm`}></i>
                 </button>
 
                 {/* Dropdown / Menu Button */}
@@ -111,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({
                     <button 
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                        className="flex items-center justify-center h-9 sm:h-11 w-auto aspect-[469/179] rounded-md overflow-hidden hover:ring-2 sm:hover:ring-4 hover:ring-gray-100 dark:hover:ring-dark-card transition-all"
+                        className="flex items-center justify-center h-7 sm:h-11 w-auto aspect-[469/179] rounded-md overflow-hidden hover:ring-2 sm:hover:ring-4 hover:ring-gray-100 dark:hover:ring-dark-card transition-all"
                     >
                         <img 
                             src="https://2ef74abf.tunnel-tunnel.pages.dev/Tajmir%20land%20Button.png" 
